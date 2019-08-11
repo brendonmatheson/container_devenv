@@ -25,7 +25,7 @@ apt-get install -y \
 # in case later commands are changed
 wget -O kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 wget -O kops https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
-wget https://storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz
+wget -O helm.tar.gz https://storage.googleapis.com/kubernetes-helm/helm-$(curl -s https://api.github.com/repos/helm/helm/releases/latest | grep tag_name | cut -d '"' -f 4)-linux-amd64.tar.gz
 
 # kubectl
 chmod +x ./kubectl
@@ -36,8 +36,8 @@ chmod +x ./kops
 mv ./kops /usr/local/bin/
 
 # helm
-tar xvzf helm-v2.9.1-linux-amd64.tar.gz
+tar xvzf helm.tar.gz
 
 mv linux-amd64/helm /usr/local/bin
 rm -Rf linux-amd64
-rm helm-v2.9.1-linux-amd64.tar.gz
+rm helm.tar.gz
